@@ -1,4 +1,41 @@
-<main>
-    <app-nav></app-nav>
-    <app-board></app-board>
+<app-nav></app-nav>
+<main class="px-0 m-0">
+    <app-board *ngIf="auth.user | async"></app-board>
+
+<div class="card mx-auto col-md-3 mx-0 mt-5 p-3 py-4 form-signin shadow" *ngIf="!(auth.user | async)">
+    <div class="mx-auto text-auto mb-2">
+        <h2 class="text-monospace">👋 Hello!</h2>
+    </div>
+    <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email">
+    <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password">
+
+    <!--<button class="btn btn-warning" (click)="signup()" [disabled]="!email || !password">
+        Signup
+    </button>-->
+
+    <button class="btn btn-primary" (click)="login()" [disabled]="!email || !password">
+        Login
+    </button>
+</div>
+    
 </main>
+
+
+<!--<h1 *ngIf="auth.user | async">Welcome {{ (auth.user | async)?.email }}!</h1>
+<app-board></app-board>
+<div *ngIf="!(auth.user | async)">
+    <input type="text" placeholder="email" [(ngModel)]="email">
+    <input type="password" placeholder="password" [(ngModel)]="password">
+
+    <button (click)="signup()" [disabled]="!email || !password">
+        Signup
+    </button>
+
+    <button (click)="login()" [disabled]="!email || !password">
+        Login
+    </button>
+</div>
+
+<button (click)="logout()" *ngIf="auth.user | async">
+    Logout
+</button>-->

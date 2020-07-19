@@ -10,7 +10,7 @@ import { Note } from './note.model';
 export class BoardComponent implements OnInit {
   notes: Note[];
 
-  constructor(private boardService: BoardService) {}
+  constructor( private boardService: BoardService) {}
 
   ngOnInit(): void {
     this.notes = this.boardService.getNote();

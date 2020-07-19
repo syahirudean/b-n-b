@@ -1,7 +1,7 @@
-
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
         <h2 class="">🏠 Banda Board</h2>
-        <button class="btn btn-outline-light font-weight-bold my-2 my-sm-0 ml-auto" type="submit">👋 Bye</button>
+        <button class="btn btn-outline-light font-weight-bold my-2 my-sm-0 ml-auto" type="submit" (click)="logout()"
+            *ngIf="auth.user | async">👋 Bye</button>
     </div>
 </nav>
