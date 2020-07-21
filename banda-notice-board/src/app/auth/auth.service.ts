@@ -30,7 +30,7 @@ export class AuthService {
           return of(null);
         }
       })
-    ); */this.user =
+    ); */ this.user =
       afAuth.authState;
   }
 
@@ -43,6 +43,7 @@ export class AuthService {
       })
       .catch((err) => {
         console.log('Something went wrong:', err.message);
+        alert(err.message);
       });
   }
 
@@ -54,6 +55,7 @@ export class AuthService {
       })
       .catch((err) => {
         console.log('Something went wrong:', err.message);
+        alert(err.message);
       });
   }
 

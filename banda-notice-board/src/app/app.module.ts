@@ -13,6 +13,7 @@ import { BoardModule } from './board/board.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth/auth.service';
 import { FormsModule } from '@angular/forms';
+import { LoginModule } from './login/login.module';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule
+    FormsModule,
+    LoginModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
