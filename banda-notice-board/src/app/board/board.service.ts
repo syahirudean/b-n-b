@@ -38,11 +38,11 @@ export class BoardService {
     return this.notes$;
   }
 
-  addNote(note: Note) {
+  add(note: Note) {
     this.board.add(note);
   }
 
-  deleteNote(note: Note) {
+  delete(note: Note) {
     this.noteDoc = this.afs.doc(`notes/${note.id}`);
     this.noteDoc.delete();
   }

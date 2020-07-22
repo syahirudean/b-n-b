@@ -5,7 +5,6 @@ import { DatePipe } from '@angular/common';
 import { BoardService } from '../board.service';
 import { Note } from '../note.model';
 
-
 @Component({
   selector: 'app-add-note',
   templateUrl: './add-note.component.html',
@@ -13,17 +12,23 @@ import { Note } from '../note.model';
 })
 export class AddNoteComponent implements OnInit {
   @Input() notes: Note;
+  note: Note = {
+    id: Date.now.toString(),
+    date: Date.now(),
+    subject: '',
+    body: '',
+  };
   noteForm: FormGroup;
   date: number = Date.now();
-  pipe = new DatePipe('en-SG');
-  formatDate = this.pipe.transform(this.date, 'short');
+  // pipe = new DatePipe('en-SG');
+  // formatDate = this.pipe.transform(this.date, 'short');
 
   constructor(private fb: FormBuilder, private boardService: BoardService) {}
 
   ngOnInit(): void {
     console.log(this.notes);
     this.noteForm = this.fb.group({
-      date: this.formatDate,
+      date: Date.now(),
       subject: '',
       body: '',
     });
@@ -31,9 +36,9 @@ export class AddNoteComponent implements OnInit {
 
   onSubmit() {
     console.log(this.noteForm.value);
-    if (this.noteForm.value.subject !== '') {
-      this.boardService.addNote(this.noteForm.value);
-      this.noteForm.reset(this.noteForm);
+    if (this.note.subject !== '') {
+      this.boardService.add(this.note);
+      // this.noteForm.reset(this.noteForm);
     }
   }
 }

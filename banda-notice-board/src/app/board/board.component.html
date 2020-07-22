@@ -1,6 +1,14 @@
 <main class="container col-md-6 p-1 mx-auto">
     <app-add-note [notes]="notes"></app-add-note>
-    <div *ngFor="let note of notes">
-        <app-note [notes]="note"></app-note>
-    </div>
+    <section *ngFor="let note of notes">
+        <app-note [notes]="note" *ngIf="notes?.length > 0"></app-note>
+    </section>
+    <section class="card col-md-8 mx-auto" *ngIf="notes?.length === 0">
+        <img class="card-img-top"
+            src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/google/241/sleeping-face_1f634.png"
+            alt="Card image cap">
+        <div class="card-body text-center">
+            <p class="card-text">Looks there's nothing to do. Let's add something!</p>
+        </div>
+    </section>
 </main>

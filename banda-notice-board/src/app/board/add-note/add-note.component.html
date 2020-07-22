@@ -1,11 +1,11 @@
 <section class="card col-md-8 text-light my-3 mx-auto p-0 pb-3 shadow">
-    <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
         <div class="card-header bg-primary">
-            <input class="form-control mb-2" type="text" placeholder="📝 What do you want to do?" name="subject"
-                formControlName="subject" required>
+            <input class="form-control mb-2" type="text" placeholder="📝 What do you want to do?" name="subject" [(ngModel)]="note.subject"
+                required>
         </div>
         <div class="card-body m-0 p-2 pt-1 pb-3">
-            <textarea class="form-control" placeholder="👉 Detials goes here..." name="body" formControlName="body"
+            <textarea class="form-control" type="text" placeholder="👉 Detials goes here..." name="body" [(ngModel)]="note.body"
                 style="height:50px"></textarea>
             <button class="btn btn-primary font-weight-bold mt-3 float-right" type="submit"
                 [disabled]="noteForm.invalid">✔️ Add</button>

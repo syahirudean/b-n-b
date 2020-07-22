@@ -1,9 +1,23 @@
-<section class="card text-dark col-md-8 bg-warning my-3 mx-auto p-0 shadow">
-    <div class="card-header row px-4">
-        <h5 class="card-title m-0 p-0">{{notes.subject}}</h5>
-        <small class="ml-auto">{{notes.date}}</small>
+<section class="card text-dark bg-warning my-3 mx-auto p-0 shadow col-md-8" (ngSubmit)="updateNote(notes)">
+    <div class="card-header d-flex bd-highlight ">
+        <div class="p-0 m-0 w-100 bd-highlight">
+            <h5 class="card-title m-0 p-0" *ngIf="editState === false">🐻 {{notes.subject}}</h5>
+            <input class="form-control form-control-sm sbj" type="text" placeholder="notes.subject"
+                [(ngModel)]="notes.subject" name="subject" *ngIf="editState === true">
+        </div>
+        <div class="p-0 m-0 flex-shrink-1 bd-highlight">
+            <span class="ml-auto m-0 trigger-btn" *ngIf="editState === false"
+                (click)="editNote($event, notes)">✏️</span>
+            <span class="ml-auto m-0 trigger-btn" *ngIf="editState === true" (click)="close()">❎</span></div>
     </div>
-    <div class="card-body bg-light pt-2 px-3 pb-4">
-        <p class="card-text p-0 m-0">{{notes.body}}</p>
+    <div class="card-body bg-light pt-2 px-3 pb-2">
+        <textarea class="form-control" type="text" placeholder="notes.body" [(ngModel)]="notes.body" name="body"
+            *ngIf="editState === true"></textarea>
+        <p class="card-text p-0 m-0" *ngIf="editState === false">{{notes.body}}</p>
+        <div class="row ml-auto text-right mb-2">
+            <button class="btn btn-danger btn-sm mt-2" *ngIf="editState === true"
+                (click)="deleteNote($event, notes)">🗑️ delete</button>
+            <small class="mt-0 mr-2 p-2 mb-0 badge badge-pill badge-light ml-auto">{{notes.date | date : 'medium'}}</small>
+        </div>
     </div>
 </section>
