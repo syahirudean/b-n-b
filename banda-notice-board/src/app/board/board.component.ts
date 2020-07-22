@@ -13,7 +13,9 @@ export class BoardComponent implements OnInit {
   constructor(private boardService: BoardService) {}
 
   ngOnInit(): void {
-    this.notes = this.boardService.getNote();
-    console.log(this.notes);
+    this.boardService.getNotes().subscribe((notes) => {
+      this.notes = notes;
+      console.log(this.notes);
+    });
   }
 }

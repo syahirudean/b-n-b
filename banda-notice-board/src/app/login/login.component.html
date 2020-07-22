@@ -1,0 +1,28 @@
+<main class="px-0 m-0">
+    <div class="card mx-auto col-md-3 mx-0 mt-5 p-3 py-4 form-signin shadow" *ngIf="join.length === 0">
+        <div class="mx-auto text-auto mb-2">
+            <h2 class="text-monospace">👋 Hello!</h2>
+        </div>
+        <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email">
+        <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password">
+
+        <button class="btn btn-primary" (click)="login()" [disabled]="!email || !password">
+            Login
+        </button>
+    </div>
+
+    <div class="card mx-auto col-md-3 mx-0 mt-5 p-3 py-4 form-signin shadow" *ngIf="join.length > 0">
+        <div class="mx-auto text-auto mb-2">
+            <h2 class="text-monospace">Join us!</h2>
+        </div>
+        <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email">
+        <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password">
+
+        <button class="btn btn-warning" (click)="signup()" [disabled]="!email || !password">
+            Signup
+        </button>
+    </div>
+
+</main>
+
+<!--*ngIf="!(auth.user | async) && join === false"-->

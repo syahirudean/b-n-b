@@ -1,4 +1,23 @@
-<main>
-    <app-nav></app-nav>
-    <app-board></app-board>
-</main>
+<app-nav></app-nav>
+<app-login *ngIf="!(auth.user | async)"></app-login>
+<app-board  *ngIf="(auth.user | async)"></app-board>
+
+
+<!--<h1 *ngIf="auth.user | async">Welcome {{ (auth.user | async)?.email }}!</h1>
+<app-board></app-board>
+<div *ngIf="!(auth.user | async)">
+    <input type="text" placeholder="email" [(ngModel)]="email">
+    <input type="password" placeholder="password" [(ngModel)]="password">
+
+    <button (click)="signup()" [disabled]="!email || !password">
+        Signup
+    </button>
+
+    <button (click)="login()" [disabled]="!email || !password">
+        Login
+    </button>
+</div>
+
+<button (click)="logout()" *ngIf="auth.user | async">
+    Logout
+</button>-->
