@@ -1,14 +1,24 @@
-<section class="card col-md-8 text-light my-3 mx-auto p-0 pb-3 shadow">
-    <form (ngSubmit)="onSubmit()">
-        <div class="card-header bg-primary">
-            <input class="form-control mb-2" type="text" placeholder="📝 What do you want to do?" name="subject" [(ngModel)]="note.subject"
-                required>
+<section class="card col-md-8 text-light my-3 mx-auto p-0 shadow">
+    <form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+        <div class="card-header bg-primary d-flex bd-highlight px-2">
+            <div class="p-0 m-0 w-100 bd-highlight">
+                <input class="form-control mb-2" style="width: 95%;" type="text"
+                    placeholder="📝 What do you want to do?" name="subject" formControlName="subject" required>
+            </div>
+            <div class="p-0 m-0 flex-shrink-1 bd-highlight">
+                <button class="btn btn-sm btn-outline-primary font-weight-bold mt-1" type="submit"
+                    [disabled]="noteForm.invalid">📌</button>
+            </div>
         </div>
-        <div class="card-body m-0 p-2 pt-1 pb-3">
-            <textarea class="form-control" type="text" placeholder="👉 Detials goes here..." name="body" [(ngModel)]="note.body"
-                style="height:50px"></textarea>
-            <button class="btn btn-primary font-weight-bold mt-3 float-right" type="submit"
-                [disabled]="noteForm.invalid">✔️ Add</button>
+        <div class="card-body m-0 px-2 pt-2" formArrayName="body">
+            <div class="row m-0 p-0 pb-1" *ngFor="let list of bodyForms.controls; let i = index" [formGroupName]="i">
+                <textarea class="form-control col-11" style="height: 50px;" formControlName="list"
+                    placeholder="💭 Detials goes here..."></textarea>
+                <div class="mx-auto p-0">
+                    <div class="mx-auto p-0 m-0"><small (click)="deleteList(i)">➖</small></div>
+                    <div class="mx-auto p-0 m-0"><small (click)="addList()">➕</small></div>
+                </div>
+            </div>
         </div>
     </form>
 </section>

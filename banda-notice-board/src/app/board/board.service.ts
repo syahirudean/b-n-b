@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Note } from './note.model';
+import { Note } from './note/note.model';
 import { Subject, Observable } from 'rxjs';
 import {
   AngularFirestore,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoardService } from './board.service';
-import { Note } from './note.model';
+import { Note } from './note/note.model';
 
 @Component({
   selector: 'app-board',

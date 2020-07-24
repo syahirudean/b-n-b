@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
-import { Note } from '../note.model';
+import { Note } from './note.model';
 import { BoardService } from '../board.service';
 
 @Component({

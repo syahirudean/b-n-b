@@ -1,6 +1,6 @@
 <app-nav></app-nav>
 <app-login *ngIf="!(auth.user | async)"></app-login>
-<app-board  *ngIf="(auth.user | async)"></app-board>
+<app-board *ngIf="(auth.user | async)"></app-board>
 
 
 <!--<h1 *ngIf="auth.user | async">Welcome {{ (auth.user | async)?.email }}!</h1>
