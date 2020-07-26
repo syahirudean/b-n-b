@@ -1,28 +1,7 @@
-<main class="px-0 m-0">
-    <div class="card mx-auto col-md-3 mx-0 mt-5 p-3 py-4 form-signin shadow" *ngIf="join.length === 0">
-        <div class="mx-auto text-auto mb-2">
-            <h2 class="text-monospace">👋 Hello!</h2>
-        </div>
-        <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email">
-        <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password">
-
-        <button class="btn btn-primary" (click)="login()" [disabled]="!email || !password">
-            Login
-        </button>
-    </div>
-
-    <div class="card mx-auto col-md-3 mx-0 mt-5 p-3 py-4 form-signin shadow" *ngIf="join.length > 0">
-        <div class="mx-auto text-auto mb-2">
-            <h2 class="text-monospace">Join us!</h2>
-        </div>
-        <input class="form-control" type="email" placeholder="Email" [(ngModel)]="email">
-        <input class="form-control" type="password" placeholder="Password" [(ngModel)]="password">
-
-        <button class="btn btn-warning" (click)="signup()" [disabled]="!email || !password">
-            Signup
-        </button>
-    </div>
-
+<main class="container col-md-3">
+    <section class="card shadow text-center mt-5 bg-success">
+        <h2 class="pt-5 px-5 pb-2">👋 HELLO!</h2>
+        <button class="btn btn-light mt-2 mx-3 mb-4" (click)="auth.googleSignin()"><img
+                src="../../assets/small-google.png" style="height: 2rem; width: 6rem;"></button>
+    </section>
 </main>
-
-<!--*ngIf="!(auth.user | async) && join === false"-->

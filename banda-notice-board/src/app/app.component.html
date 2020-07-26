@@ -1,23 +1,16 @@
 <app-nav></app-nav>
-<app-login *ngIf="!(auth.user | async)"></app-login>
-<app-board *ngIf="(auth.user | async)"></app-board>
 
-
-<!--<h1 *ngIf="auth.user | async">Welcome {{ (auth.user | async)?.email }}!</h1>
-<app-board></app-board>
-<div *ngIf="!(auth.user | async)">
-    <input type="text" placeholder="email" [(ngModel)]="email">
-    <input type="password" placeholder="password" [(ngModel)]="password">
-
-    <button (click)="signup()" [disabled]="!email || !password">
-        Signup
-    </button>
-
-    <button (click)="login()" [disabled]="!email || !password">
-        Login
-    </button>
+<div *ngIf="auth.user$ | async; then authenticated else guest">
+    <!-- template will replace this div -->
 </div>
 
-<button (click)="logout()" *ngIf="auth.user | async">
-    Logout
-</button>-->
+<!-- User NOT logged in -->
+<ng-template #guest>
+    <app-login></app-login>
+</ng-template>
+
+
+<!-- User logged in -->
+<ng-template #authenticated>
+    <app-board></app-board>
+</ng-template>

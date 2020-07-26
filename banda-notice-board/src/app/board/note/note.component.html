@@ -1,7 +1,7 @@
-<section class="card text-dark bg-warning my-3 mx-auto p-0 shadow col-md-8" (ngSubmit)="updateNote(notes)">
+<section class="card text-dark bg-warning my-3 mx-auto p-0 shadow col-md-8" (ngSubmit)="updateNote(notes)" *ngIf="auth.user$ | async as user">
     <div class="card-header d-flex bd-highlight ">
         <div class="p-0 m-0 w-100 bd-highlight">
-            <h5 class="card-title m-0 p-0" *ngIf="editState === false">🐻 {{notes.subject}}</h5>
+            <h5 class="card-title m-0 p-0" *ngIf="editState === false">{{ notes.avatar }}: {{notes.subject}}</h5>
             <input class="form-control form-control-sm sbj" type="text" placeholder="notes.subject"
                 [(ngModel)]="notes.subject" name="subject" *ngIf="editState === true">
         </div>
@@ -11,12 +11,12 @@
             <span class="ml-auto m-0 trigger-btn" *ngIf="editState === true" (click)="close()">❎</span></div>
     </div>
     <div class="card-body bg-light pt-2 px-0 pb-2">
-        <form class="px-2" *ngFor="let body of notes.body">
+        <form class="px-2 py-0" *ngFor="let body of notes.body">
             <textarea class="form-control mb-2" type="text" placeholder="notes.body" [(ngModel)]="body.list" name="body"
                 *ngIf="editState === true"></textarea>
-            <div *ngIf="editState===false">
-                <p class="m-o p-0">
-                    <small>👉</small> {{body.list}}
+            <div class="m-0 p-0" *ngIf="editState===false">
+                <p class="m-0 p-0">
+                    {{body.list}}
                 </p>
             </div>
         </form>

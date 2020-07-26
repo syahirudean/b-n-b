@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
 import { BoardService } from '../board/board.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -21,6 +21,6 @@ export class NavComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+   // this.auth.logout();
   }
 }

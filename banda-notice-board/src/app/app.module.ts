@@ -1,9 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from 'angularfire2';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,8 +10,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from './auth/auth.service';
 import { FormsModule } from '@angular/forms';
 import { LoginModule } from './login/login.module';
-
-
+import { AuthModule } from './auth/auth.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -25,11 +24,12 @@ import { LoginModule } from './login/login.module';
     NavModule,
     BoardModule,
     NgbModule,
+    FormsModule,
+    LoginModule,
+    AuthModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    FormsModule,
-    LoginModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

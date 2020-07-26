@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Note } from './note.model';
 import { BoardService } from '../board.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-note',
@@ -13,7 +14,7 @@ export class NoteComponent implements OnInit {
   editState = false;
   edit: Note;
 
-  constructor(public board: BoardService) {}
+  constructor(public board: BoardService, public auth: AuthService) {}
 
   ngOnInit(): void {}
 

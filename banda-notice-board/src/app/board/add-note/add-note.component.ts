@@ -4,6 +4,8 @@ import { DatePipe } from '@angular/common';
 
 import { BoardService } from '../board.service';
 import { Note } from '../note/note.model';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/user.model';
 
 @Component({
   selector: 'app-add-note',
@@ -12,16 +14,22 @@ import { Note } from '../note/note.model';
 })
 export class AddNoteComponent implements OnInit {
   @Input() notes: Note;
+  user: User;
   noteForm: FormGroup;
   date: number = Date.now();
   pipe = new DatePipe('en-SG');
   formatDate = this.pipe.transform(this.date, 'medium');
 
-  constructor(private fb: FormBuilder, private boardService: BoardService) {}
+  constructor(private fb: FormBuilder, private boardService: BoardService, private auth: AuthService) {}
 
   ngOnInit(): void {
+    this.auth.getUser().subscribe((user) => {
+      this.user = user;
+      console.log(this.user);
+    });
     this.noteForm = this.fb.group({
       id: '',
+      avatar: '',
       date: '',
       subject: '',
       body: this.fb.array([this.initList()]),
@@ -55,11 +63,10 @@ export class AddNoteComponent implements OnInit {
   onSubmit() {
     if (this.noteForm.value.subject !== '') {
       this.noteForm.value.date = this.formatDate;
-      this.noteForm.value.id = Date.now();
-      console.log(this.noteForm.value);
+      this.noteForm.value.id = this.user.uid;
+      this.noteForm.value.avatar = this.user.icon;
       this.boardService.add(this.noteForm.value);
       this.noteForm.reset();
-      console.log(this.noteForm.value);
       this.bodyForms.clear();
       this.bodyForms.push(this.emptyList());
     }
